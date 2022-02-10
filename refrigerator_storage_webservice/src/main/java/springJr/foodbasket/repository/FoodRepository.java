@@ -18,11 +18,10 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 	@Query("SELECT f FROM Food f WHERE f.category = :category")
 	List<Food> findByCategory(@Param("category") Category category);
 
-	@Query("SELECT f FROM Food f WHERE f.category = :storeWay")
+	@Query("SELECT f FROM Food f WHERE f.storeWay = :storeWay")
 	List<Food> findByStoreWay(@Param("storeWay") StoreWay storeWay);
 
-	@Query("SELECT f FROM Food f WHERE f.category = :foodStatus")
+	@Query("SELECT f FROM Food f WHERE f.foodStatus = :foodStatus")
 	List<Food> findByFoodStatus(@Param("foodStatus") FoodStatus foodStatus);
-
 
 }
