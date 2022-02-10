@@ -1,13 +1,10 @@
 package springJr.foodbasket.repository;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +18,7 @@ import springJr.foodbasket.domain.food.StoreWay;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class FoodRepositoryTest {
+class FoodRepositorySaveTest {
 
 	@Autowired
 	FoodRepository foodRepository;
@@ -32,19 +29,21 @@ class FoodRepositoryTest {
 	}
 
 	@Test
-	public void saveFoodTest() {
+	public void 식료품_저장_유통기한() {
 		//given
 		String name = "바나나";
 		StoreWay storeWay = StoreWay.CHILL;
 		Category category = Category.FRUIT;
 		int quantity = 3;
-		LocalDateTime expiredAt = LocalDateTime.of(2022, 2, 20, 00, 00);
+		LocalDate today = LocalDate.now();
+		LocalDate expiredAt = LocalDate.of(2022, 2, 20);
 
 		foodRepository.save(Food.builder()
 			.name(name)
 			.storeWay(storeWay)
 			.category(category)
 			.quantity(quantity)
+			.saveAt(today)
 			.expireAt(expiredAt)
 			.build()
 		);
@@ -56,6 +55,34 @@ class FoodRepositoryTest {
 		Food food = allFoods.get(0);
 		assertThat(food.getName()).isEqualTo("바나나");
 		assertThat(food.getExpireAt()).isEqualTo(expiredAt);
+	}
+
+	@Test
+	public void 식료품_저장_유통기한X() {
+		//given
+		String name = "소고기";
+		StoreWay storeWay = StoreWay.CHILL;
+		Category category = Category.MEAT;
+		int quantity = 1;
+		LocalDate today = LocalDate.now();
+
+		foodRepository.save(Food.builder()
+			.name(name)
+			.storeWay(storeWay)
+			.category(category)
+			.quantity(quantity)
+			.saveAt(today)
+			.build()
+		);
+
+		//when
+		List<Food> allFoods = foodRepository.findAll();
+
+		//then
+		Food food = allFoods.get(0);
+		assertThat(food.getName()).isEqualTo("소고기");
+		assertThat(food.getSaveAt()).isEqualTo(today);
+		assertThat(food.getExpireAt()).isNull();
 	}
 
 }

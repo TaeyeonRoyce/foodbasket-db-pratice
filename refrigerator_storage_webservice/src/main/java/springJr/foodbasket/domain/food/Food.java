@@ -1,6 +1,6 @@
 package springJr.foodbasket.domain.food;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -41,26 +37,17 @@ public class Food {
 	@Column(nullable = false)
 	private int quantity;
 
-	@CreatedDate
-	private LocalDateTime saveAt;
+	@Column(nullable = false)
+	private LocalDate saveAt;
 
-	private LocalDateTime expireAt;
+	private LocalDate expireAt;
 
 	@Enumerated(EnumType.STRING)
 	private FoodStatus foodStatus;
 
 	@Builder
-	public Food(String name, StoreWay storeWay, Category category, int quantity, LocalDateTime expireAt) {
-		this.name = name;
-		this.storeWay = storeWay;
-		this.category = category;
-		this.quantity = quantity;
-		this.expireAt = expireAt;
-	}
-
-	@Builder
-	public Food(String name, StoreWay storeWay, Category category, int quantity, LocalDateTime saveAt,
-		LocalDateTime expireAt) {
+	public Food(String name, StoreWay storeWay, Category category, int quantity, LocalDate saveAt,
+		LocalDate expireAt) {
 		this.name = name;
 		this.storeWay = storeWay;
 		this.category = category;
