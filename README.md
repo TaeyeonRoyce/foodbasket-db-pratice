@@ -13,21 +13,22 @@
 **식료품 생성 ✅**
 
 > 생성시 입력(선택) 하는 필드
+> `FoodSaveRequestDto`를 통해 데이터 받기.
 >
-> |          | 이름   | 보관방법     | 분류         | 수량 | 보관일자   | 유통기한   |
-> | -------- | ------ | ------------ | ------------ | ---- | ---------- | ---------- |
-> | Type     | String | Enum(String) | Enum(String) | int  | LocalDate  | LocalDate  |
-> | Nullable | X      | X            | X            | X    | X          | O          |
-> | default  | X      | X            | X            | 1    | today      | X          |
-> | ex)      | 우유   | 냉장보관     | 유제품       | 3    | 2022-02-11 | 2022-02-21 |
->
-> 
->
-> `FoodSaveDto`를 통해 데이터 전달.
+> | FoodSaveRequestDto | 이름   | 보관방법     | 분류         | 수량 | 보관일자   | 유통기한   |
+> | ------------------ | ------ | ------------ | ------------ | ---- | ---------- | ---------- |
+> | Type               | String | Enum(String) | Enum(String) | int  | LocalDate  | LocalDate  |
+> | Nullable           | X      | X            | X            | X    | X          | O          |
+> | default            | X      | X            | X            | 1    | today      | X          |
+> | ex)                | 우유   | 냉장보관     | 유제품       | 3    | 2022-02-11 | 2022-02-21 |
 >
 > GET : `/newfood` => 식료품 추가 화면으로 이동
 >
 > POST : `/newfood` => 식료품 추가 body => {"food" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
+>
+> 저장시 보관일자와 유통기한을 통해 `Food`의 `FoodStatus`를 결정한 뒤 `Food`로 변경하여 DB에 저장
+
+
 
 **식료품 조회 ✅**
 
@@ -47,7 +48,7 @@
 >
 > *이슈*
 >
-> - > DB에서 직접적으로 선택적 조회를 하면 조회 횟수가 많아져 성능 저하를 일으킬 수 있음.
+> - DB에서 직접적으로 선택적 조회를 하면 조회 횟수가 많아져 성능 저하를 일으킬 수 있음.
 
 U : 저장한 식료품의 내용을 수정할 수 있음
 
