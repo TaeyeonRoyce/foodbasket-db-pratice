@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import springJr.foodbasket.domain.food.dto.FoodSaveDto;
 
 @Getter
 @NoArgsConstructor
@@ -45,14 +46,17 @@ public class Food {
 	@Enumerated(EnumType.STRING)
 	private FoodStatus foodStatus;
 
+	private LocalDate lastUpdateDate;
+
 	@Builder
-	public Food(String name, StoreWay storeWay, Category category, int quantity, LocalDate saveAt,
-		LocalDate expireAt) {
-		this.name = name;
-		this.storeWay = storeWay;
-		this.category = category;
-		this.quantity = quantity;
-		this.saveAt = saveAt;
-		this.expireAt = expireAt;
+	public Food(FoodSaveDto foodSaveDto) {
+		this.name = foodSaveDto.getName();
+		this.storeWay = foodSaveDto.getStoreWay();
+		this.category = foodSaveDto.getCategory();
+		this.quantity = foodSaveDto.getQuantity();
+		this.saveAt = foodSaveDto.getSaveAt();
+		this.expireAt = foodSaveDto.getExpireAt();
+		this.foodStatus = foodSaveDto.getFoodStatus();
+		this.lastUpdateDate = foodSaveDto.getLastUpdateDate();
 	}
 }

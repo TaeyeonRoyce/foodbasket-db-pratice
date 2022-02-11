@@ -22,27 +22,27 @@ public class FoodController {
 
 	private final FoodService foodService;
 
-	@GetMapping("/foodbasket")
+	@GetMapping("/")
 	public List<Food> findAll() {
 		log.debug("findAll");
 		return foodService.findAll();
 	}
 
-	// @GetMapping("/category")
-	// public List<Food> findByCategory(@RequestParam Category category) {
-	// 	log.debug("filterType == category : {}", category);
-	// 	return foodService.findByCategory(category);
-	// }
-	//
-	// @GetMapping("/")
-	// public List<Food> findByStoreWay(@RequestParam StoreWay storeWay) {
-	// 	log.debug("filterType == storeWay : {}", storeWay);
-	// 	return foodService.findByStoreWay(storeWay);
-	// }
-	//
-	// @GetMapping("/")
-	// public List<Food> findByFoodStatus(@RequestParam FoodStatus foodStatus) {
-	// 	log.debug("filterType == foodStatus : {}", foodStatus);
-	// 	return foodService.findByFoodStatus(foodStatus);
-	// }
+	@GetMapping("/category")
+	public List<Food> findByCategory(@RequestParam Category category) {
+		log.debug("filterType == category : {}", category);
+		return foodService.findByCategory(category);
+	}
+
+	@GetMapping("/storeway")
+	public List<Food> findByStoreWay(@RequestParam StoreWay storeWay) {
+		log.debug("filterType == storeWay : {}", storeWay);
+		return foodService.findByStoreWay(storeWay);
+	}
+
+	@GetMapping("/foodstatus")
+	public List<Food> findByFoodStatus(@RequestParam FoodStatus foodStatus) {
+		log.debug("filterType == foodStatus : {}", foodStatus);
+		return foodService.findByFoodStatus(foodStatus);
+	}
 }

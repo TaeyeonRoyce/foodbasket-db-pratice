@@ -4,10 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataCreation;
 
+@DisplayName("선택 조회 테스트")
 @Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,7 +42,7 @@ class FoodControllerFindTest {
 	}
 
 	@Test
-	public void Food_조회() {
+	public void 상태_필터() {
 		/**
 		 * "바나나", CHILL, FRUIT
 		 * "소고기", CHILL, MEAT
@@ -59,7 +59,7 @@ class FoodControllerFindTest {
 	}
 
 	@Test
-	public void CATEGORY_조회() {
+	public void 유형_필터() {
 		/**
 		 * "바나나", CHILL, FRUIT
 		 * "소고기", CHILL, MEAT
@@ -76,7 +76,7 @@ class FoodControllerFindTest {
 	}
 
 	@Test
-	public void STORE_WAY_조회() {
+	public void 보관방식_필터() {
 		/**
 		 * "바나나", CHILL, FRUIT
 		 * "소고기", CHILL, MEAT
