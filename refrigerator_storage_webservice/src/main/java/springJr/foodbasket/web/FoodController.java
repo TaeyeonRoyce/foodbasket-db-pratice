@@ -3,7 +3,7 @@ package springJr.foodbasket.web;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +17,7 @@ import springJr.foodbasket.domain.food.StoreWay;
 
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping(path = "/foodbasket")
 @RestController
 public class FoodController {
 

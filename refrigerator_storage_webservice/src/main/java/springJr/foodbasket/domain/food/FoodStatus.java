@@ -17,8 +17,8 @@ public enum FoodStatus {
 		long betweenDays = ChronoUnit.DAYS.between(today, expireAt);
 		switch ((int) betweenDays) {
 			case 0:
-				return WARN;
 			case 1:
+				return WARN;
 			case 2:
 			case 3:
 				return CAUTION;

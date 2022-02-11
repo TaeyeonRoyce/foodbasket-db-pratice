@@ -6,46 +6,53 @@ import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.FoodSaveDto;
+import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
 
 public class DataCreation {
 
 	public static final LocalDate today = LocalDate.now();
 
 	public static Food banana_CHILL_FRUIT() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("바나나")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.FRUIT)
 			.quantity(3)
 			.saveAt(today)
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 	public static Food beef_CHILL_MEAT() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("소고기")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.MEAT)
 			.quantity(3)
 			.saveAt(today)
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 	public static Food blueberry_FREEZE_FRUIT() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("블루베리")
 			.storeWay(StoreWay.FREEZE)
 			.category(Category.FRUIT)
 			.quantity(3)
 			.saveAt(today)
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 	public static Food milk_CHILL_DAILY() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("우유")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.DIARY_PRODUCT)
@@ -53,11 +60,13 @@ public class DataCreation {
 			.saveAt(today)
 			.expireAt(today.plusDays(2))
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 	public static Food yogurt_CHILL_DAILY() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("요거트")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.DIARY_PRODUCT)
@@ -65,11 +74,13 @@ public class DataCreation {
 			.saveAt(today)
 			.expireAt(today.minusDays(2))
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 	public static Food carrot_CHILL_Vegetable() {
-		FoodSaveDto saveDto = FoodSaveDto.builder()
+		FoodSaveRequestDto saveDto = FoodSaveRequestDto.builder()
 			.name("요거트")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.VEGETABLE)
@@ -77,7 +88,9 @@ public class DataCreation {
 			.saveAt(today)
 			.expireAt(today.plusDays(10))
 			.build();
-		return new Food(saveDto);
+
+		FoodSaveDto foodSaveDto = new FoodSaveDto(saveDto);
+		return new Food(foodSaveDto);
 	}
 
 }
