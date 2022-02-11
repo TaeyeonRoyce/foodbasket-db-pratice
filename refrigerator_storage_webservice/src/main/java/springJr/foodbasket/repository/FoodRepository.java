@@ -23,5 +23,4 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 
 	@Query("SELECT f FROM Food f WHERE f.foodStatus = :foodStatus")
 	List<Food> findByFoodStatus(@Param("foodStatus") FoodStatus foodStatus);
-
 }

@@ -4,7 +4,6 @@ import static springJr.foodbasket.domain.food.FoodStatus.*;
 
 import java.time.LocalDate;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import springJr.foodbasket.domain.food.FoodStatus;
