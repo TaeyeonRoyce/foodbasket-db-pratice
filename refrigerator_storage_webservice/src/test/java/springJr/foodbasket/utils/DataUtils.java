@@ -7,7 +7,7 @@ import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
 
-public class DataCreation {
+public class DataUtils {
 
 	public static final LocalDate today = LocalDate.now();
 

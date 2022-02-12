@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.utils.DataCreation;
+import springJr.foodbasket.utils.DataUtils;
 
 @DisplayName("식료품 저장 테스트")
 @ExtendWith(SpringExtension.class)
@@ -31,7 +31,7 @@ class FoodRepositorySaveTest {
 	@Test
 	public void 식료품_저장_유통기한() {
 		//given
-		Food banana = DataCreation.banana_CHILL_FRUIT();
+		Food banana = DataUtils.banana_CHILL_FRUIT();
 		foodRepository.save(banana);
 
 		//when
@@ -46,7 +46,7 @@ class FoodRepositorySaveTest {
 	@Test
 	public void 식료품_저장_유통기한X() {
 		//given
-		Food beef = DataCreation.beef_CHILL_MEAT();
+		Food beef = DataUtils.beef_CHILL_MEAT();
 		foodRepository.save(beef);
 
 		//when

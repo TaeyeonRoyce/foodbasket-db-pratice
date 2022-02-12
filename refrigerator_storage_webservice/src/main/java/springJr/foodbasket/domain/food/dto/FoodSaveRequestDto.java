@@ -9,12 +9,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 
 @Getter
 @NoArgsConstructor
-public class FoodSaveRequestDto {
+public class FoodSaveRequestDto implements FoodRequestDto {
 	protected String name;
 	protected StoreWay storeWay;
 	protected Category category;

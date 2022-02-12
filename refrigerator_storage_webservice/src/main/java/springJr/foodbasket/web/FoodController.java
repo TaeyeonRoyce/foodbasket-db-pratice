@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +22,7 @@ import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -60,4 +63,13 @@ public class FoodController {
 		// response.sendRedirect("http://localhost:3000/foodbasket");
 		return saveFoodId;
 	}
+
+	@PostMapping("/edit/{foodId}")
+	public Long editFood(@PathVariable Long foodId, @RequestBody FoodUpdateRequestDto requestDto) {
+		log.debug("update food, foodId : {}", foodId);
+		foodService.updateFoodById(foodId, requestDto);
+		return foodId;
+	}
+
+
 }

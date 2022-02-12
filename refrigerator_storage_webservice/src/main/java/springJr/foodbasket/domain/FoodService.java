@@ -12,6 +12,7 @@ import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
 import springJr.foodbasket.repository.FoodRepository;
 
 @Slf4j
@@ -40,6 +41,12 @@ public class FoodService {
 	public Long addFood(FoodSaveRequestDto requestDto) {
 		Food saveFood = foodRepository.save(requestDto.toEntity());
 		return saveFood.getId();
+	}
+
+	@Transactional
+	public void updateFoodById(Long id, FoodUpdateRequestDto requestDto) {
+		Food food = foodRepository.findById(id).orElseThrow(NullPointerException::new);
+		food.updateByRequestDto(requestDto);
 	}
 
 }

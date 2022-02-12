@@ -24,7 +24,8 @@
 >
 > GET : `/newfood` => 식료품 추가 화면으로 이동
 >
-> POST : `/newfood` => 식료품 추가 body => {"food" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
+> POST : `/newfood` => 식료품 추가
+> body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
 >
 > 저장시 보관일자와 유통기한을 통해 `Food`의 `FoodStatus`를 결정한 뒤 `Food`로 변경하여 DB에 저장
 
@@ -38,13 +39,16 @@
 >
 >   GET :  `/` => 메인 페이지. 모든 식료품 조회
 >
-> - 카테고리 선택 조회 GET : `/?category={category}` => category에 해당하는 식료품만 조회
+> - 카테고리 선택 조회 
+>   GET : `/?category={category}` => category에 해당하는 식료품만 조회
 >
 > - 보관 방법 선택 조회
 >
 >   GET : `/?storeway={storeway}` => storeway(chilled, frozen) 식료품 조회
 >
-> - 음식 상태 선택 조회 GET : `/?foodstatus={foodstatus}` => foodStatus인 식료품만 조회
+> - 음식 상태 선택 조회 
+>
+>   GET : `/?foodstatus={foodstatus}` => foodStatus인 식료품만 조회
 >
 > *이슈*
 >
@@ -52,7 +56,14 @@
 
 U : 저장한 식료품의 내용을 수정할 수 있음
 
-> 금일 날짜와 비교하여 제품 상태 업데이트 기능 구현
+> GET : `/edit/{foodId}` => 식료품 수정 화면으로 이동
+>
+> POST : `/edit/{foodId}` => 식료품 수정 by Id 
+> body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
+>
+> `FoodUpdateRequestDto`를 통해 데이터 받기. 필드와 메서드가 동일하여 `FoodSaveRequestDto`를 상속받음. ✅
+>
+> 금일 날짜와 비교하여 제품 상태 업데이트 기능 구현 
 >
 > 1. 조회시 업데이트 로직 수행
 > 2. 업데이트 날짜를 저장하여 날짜 변경시에만 업데이트 수행하도록 구현

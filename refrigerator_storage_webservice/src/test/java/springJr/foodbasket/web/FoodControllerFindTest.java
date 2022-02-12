@@ -18,7 +18,7 @@ import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.repository.FoodRepository;
-import springJr.foodbasket.utils.DataCreation;
+import springJr.foodbasket.utils.DataUtils;
 
 @DisplayName("선택 조회 테스트")
 @Transactional
@@ -31,9 +31,9 @@ class FoodControllerFindTest {
 
 	@BeforeEach
 	void setData() {
-		foodRepository.save(DataCreation.banana_CHILL_FRUIT());
-		foodRepository.save(DataCreation.blueberry_FREEZE_FRUIT());
-		foodRepository.save(DataCreation.beef_CHILL_MEAT());
+		foodRepository.save(DataUtils.banana_CHILL_FRUIT());
+		foodRepository.save(DataUtils.blueberry_FREEZE_FRUIT());
+		foodRepository.save(DataUtils.beef_CHILL_MEAT());
 	}
 
 	@AfterEach

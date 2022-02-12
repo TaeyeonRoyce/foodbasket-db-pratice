@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
 
 @Getter
 @NoArgsConstructor
@@ -58,5 +59,14 @@ public class Food {
 		this.expireAt = expireAt;
 		this.foodStatus = foodStatus;
 		this.lastUpdateDate = lastUpdateDate;
+	}
+
+	public void updateByRequestDto(FoodUpdateRequestDto requestDto) {
+		this.name = requestDto.getName();
+		this.storeWay = requestDto.getStoreWay();
+		this.category = requestDto.getCategory();
+		this.quantity = requestDto.getQuantity();
+		this.saveAt = requestDto.getSaveAt();
+		this.expireAt = requestDto.getExpireAt();
 	}
 }

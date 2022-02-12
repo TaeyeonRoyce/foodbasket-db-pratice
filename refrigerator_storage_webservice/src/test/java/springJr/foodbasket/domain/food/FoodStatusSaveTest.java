@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import springJr.foodbasket.repository.FoodRepository;
-import springJr.foodbasket.utils.DataCreation;
+import springJr.foodbasket.utils.DataUtils;
 
 @DisplayName("식료품 상태 설정 테스트")
 @ExtendWith(SpringExtension.class)
@@ -32,7 +32,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_주의() {
 		//given
-		Food milk = DataCreation.milk_CHILL_DAILY();
+		Food milk = DataUtils.milk_CHILL_DAILY();
 		foodRepository.save(milk);
 
 		//when
@@ -46,7 +46,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_만료() {
 		//given
-		Food yogurt = DataCreation.yogurt_CHILL_DAILY();
+		Food yogurt = DataUtils.yogurt_CHILL_DAILY();
 		foodRepository.save(yogurt);
 
 		//when
@@ -60,7 +60,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_신선() {
 		//given
-		Food carrot = DataCreation.carrot_CHILL_Vegetable();
+		Food carrot = DataUtils.carrot_CHILL_Vegetable();
 		foodRepository.save(carrot);
 
 		//when
@@ -74,7 +74,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_모름() {
 		//given
-		Food banana = DataCreation.banana_CHILL_FRUIT();
+		Food banana = DataUtils.banana_CHILL_FRUIT();
 		foodRepository.save(banana);
 
 		//when
