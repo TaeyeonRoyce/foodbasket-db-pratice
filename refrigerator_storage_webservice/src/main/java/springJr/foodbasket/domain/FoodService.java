@@ -11,8 +11,8 @@ import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
-import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
 import springJr.foodbasket.repository.FoodRepository;
 
 @Slf4j

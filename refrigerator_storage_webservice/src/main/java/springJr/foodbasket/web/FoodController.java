@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +20,8 @@ import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
-import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
 
 @Slf4j
 @RequiredArgsConstructor

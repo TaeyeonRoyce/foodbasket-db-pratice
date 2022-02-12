@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
 
 public class DataUtils {
 

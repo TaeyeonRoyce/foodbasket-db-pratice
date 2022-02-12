@@ -1,25 +1,18 @@
-package springJr.foodbasket.domain.food.dto;
+package springJr.foodbasket.domain.food.dto.request;
 
 import static springJr.foodbasket.domain.food.FoodStatus.*;
 
 import java.time.LocalDate;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.StoreWay;
+import springJr.foodbasket.domain.food.dto.FoodServletDto;
 
-@Getter
 @NoArgsConstructor
-public class FoodSaveRequestDto implements FoodRequestDto {
-	protected String name;
-	protected StoreWay storeWay;
-	protected Category category;
-	protected int quantity;
-	protected LocalDate saveAt;
-	protected LocalDate expireAt;
+public class FoodSaveRequestDto extends FoodServletDto implements FoodRequestDto {
 
 	@Builder
 	public FoodSaveRequestDto(String name, StoreWay storeWay, Category category, int quantity, LocalDate saveAt,

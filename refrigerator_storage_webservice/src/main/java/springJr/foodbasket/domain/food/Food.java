@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import springJr.foodbasket.domain.food.dto.FoodUpdateRequestDto;
+import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
 
 @Getter
 @NoArgsConstructor
