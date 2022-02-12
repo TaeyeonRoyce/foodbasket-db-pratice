@@ -75,12 +75,25 @@ public class DataUtils {
 
 	public static Food carrot_CHILL_Vegetable() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
-			.name("요거트")
+			.name("당근")
 			.storeWay(StoreWay.CHILL)
 			.category(Category.VEGETABLE)
 			.quantity(1)
 			.saveAt(today)
 			.expireAt(today.plusDays(10))
+			.build();
+
+		return requestDto.toEntity();
+	}
+
+	public static Food chickenWing_2DaysBefore() {
+		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
+			.name("닭날개")
+			.storeWay(StoreWay.CHILL)
+			.category(Category.MEAT)
+			.quantity(1)
+			.saveAt(today.minusDays(2))
+			.expireAt(today.plusDays(1))
 			.build();
 
 		return requestDto.toEntity();

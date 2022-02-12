@@ -69,4 +69,9 @@ public class Food {
 		this.saveAt = requestDto.getSaveAt();
 		this.expireAt = requestDto.getExpireAt();
 	}
+
+	public void dailyUpdate(FoodStatus foodStatus, LocalDate today) {
+		this.foodStatus = foodStatus;
+		this.lastUpdateDate = today;
+	}
 }

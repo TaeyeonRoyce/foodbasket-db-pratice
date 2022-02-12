@@ -1,6 +1,7 @@
 package springJr.foodbasket.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,17 +14,26 @@ import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
 import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
+import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
 import springJr.foodbasket.repository.FoodRepository;
 
 @Slf4j
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class FoodService {
 
 	private final FoodRepository foodRepository;
 
-	public List<Food> findAll() {
-		return foodRepository.findAll();
+	public List<FoodResponseDto> findAll() {
+		return toResponseDto(foodRepository.findAll());
+	}
+
+	public FoodResponseDto findById(Long id) {
+		Food food = foodRepository.findById(id).get();
+		return FoodResponseDto.builder()
+			.entity(food)
+			.build();
 	}
 
 	public List<Food> findByCategory(Category category) {
@@ -33,20 +43,25 @@ public class FoodService {
 	public List<Food> findByStoreWay(StoreWay storeWay) {
 		return foodRepository.findByStoreWay(storeWay);
 	}
+
 	public List<Food> findByFoodStatus(FoodStatus foodStatus) {
 		return foodRepository.findByFoodStatus(foodStatus);
 	}
 
-	@Transactional
 	public Long addFood(FoodSaveRequestDto requestDto) {
 		Food saveFood = foodRepository.save(requestDto.toEntity());
 		return saveFood.getId();
 	}
 
-	@Transactional
 	public void updateFoodById(Long id, FoodUpdateRequestDto requestDto) {
 		Food food = foodRepository.findById(id).orElseThrow(NullPointerException::new);
 		food.updateByRequestDto(requestDto);
+	}
+
+	public List<FoodResponseDto> toResponseDto(List<Food> foods) {
+		return foods.stream()
+			.map(food -> new FoodResponseDto(food))
+			.collect(Collectors.toList());
 	}
 
 }

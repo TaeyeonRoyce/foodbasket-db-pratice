@@ -1,4 +1,6 @@
 package springJr.foodbasket.domain.food.dto.request;
 
-public class FoodUpdateRequestDto extends FoodSaveRequestDto implements FoodRequestDto {
+import springJr.foodbasket.domain.food.dto.FoodServletDto;
+
+public class FoodUpdateRequestDto extends FoodServletDto implements FoodRequestDto {
 }

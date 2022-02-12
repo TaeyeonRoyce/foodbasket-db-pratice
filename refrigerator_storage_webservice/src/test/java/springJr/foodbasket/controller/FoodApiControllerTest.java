@@ -23,6 +23,7 @@ import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.request.FoodRequestDto;
 import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataUtils;
 
@@ -47,7 +48,7 @@ public class FoodApiControllerTest {
 
 
 	@Test
-	public void 저장_JSON() {
+	public void 저장_Food() {
 		//given
 		String foodName = "바나나";
 		FoodRequestDto requestDto = getSaveRequestDto(foodName);
@@ -67,7 +68,7 @@ public class FoodApiControllerTest {
 	}
 
 	@Test
-	public void 수정_JSON() {
+	public void 수정_Food() {
 		//given
 		Food beef_chill_meat = DataUtils.beef_CHILL_MEAT();
 		Long id = foodRepository.save(beef_chill_meat).getId();
@@ -89,6 +90,37 @@ public class FoodApiControllerTest {
 		assertThat(allFoods.get(0).getName()).isEqualTo(updateName);
 		assertThat(allFoods.get(0).getCategory()).isEqualTo(updateCategory);
 	}
+
+	@Test
+	public void 날짜_반영_업데이트() {
+		//given
+		/**
+		 * chickenWing
+		 * FoodStatus = CAUTION
+		 * LastUpdateDate = today - 2
+		 * ExpireAt = today + 1
+		 * (diffDays = 3, before dayUpdate)
+		 */
+		Food chickenWing = DataUtils.chickenWing_2DaysBefore();
+		Long id = foodRepository.save(chickenWing).getId();
+		String url = "http://localhost:" + port + "/foodbasket/" + id;
+
+		//when
+		/**
+		 * chickenWing
+		 * FoodStatus = WARN
+		 * LastUpdateDate = today
+		 * ExpireAt = today + 1
+		 * (diffDays = 1, after dayUpdate)
+		 */
+		FoodResponseDto foodResponseDto = restTemplate.getForObject(url, FoodResponseDto.class);
+
+		//then
+		assertThat(foodResponseDto.getFoodStatus()).isEqualTo(FoodStatus.WARN);
+		assertThat(foodResponseDto.getLastUpdateDate()).isEqualTo(DataUtils.today);
+	}
+
+
 
 	private FoodSaveRequestDto getSaveRequestDto(String foodName) {
 		LocalDate today = DataUtils.today;

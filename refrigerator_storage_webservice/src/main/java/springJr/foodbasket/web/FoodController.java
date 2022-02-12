@@ -22,6 +22,7 @@ import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
 import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
 import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
+import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,8 +32,8 @@ public class FoodController {
 
 	private final FoodService foodService;
 
-	@GetMapping("/")
-	public List<Food> findAll() {
+	@GetMapping("")
+	public List<FoodResponseDto> findAll() {
 		log.debug("findAll");
 		return foodService.findAll();
 	}
@@ -61,6 +62,12 @@ public class FoodController {
 		Long saveFoodId = foodService.addFood(requestDto);
 		// response.sendRedirect("http://localhost:3000/foodbasket");
 		return saveFoodId;
+	}
+
+	@GetMapping("/{foodId}")
+	public FoodResponseDto findFood(@PathVariable Long foodId) {
+		log.debug("find food, foodId : {}", foodId);
+		return foodService.findById(foodId);
 	}
 
 	@PostMapping("/edit/{foodId}")
