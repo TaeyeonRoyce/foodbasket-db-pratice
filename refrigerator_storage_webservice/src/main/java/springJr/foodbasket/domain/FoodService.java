@@ -49,8 +49,9 @@ public class FoodService {
 	}
 
 	public Long addFood(FoodSaveRequestDto requestDto) {
-		Food saveFood = foodRepository.save(requestDto.toEntity());
-		return saveFood.getId();
+		Food food = requestDto.toEntity();
+		Long id = foodRepository.save(food).getId();
+		return id;
 	}
 
 	public void updateFoodById(Long id, FoodUpdateRequestDto requestDto) {

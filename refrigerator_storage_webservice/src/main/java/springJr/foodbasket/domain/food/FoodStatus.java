@@ -10,7 +10,7 @@ public enum FoodStatus {
 	WARN,
 	EXPIRED;
 
-	public static FoodStatus foodStatusByDate(LocalDate today,LocalDate expireAt) {
+	public static FoodStatus foodStatusByDate(LocalDate today, LocalDate expireAt) {
 		if (expireAt == null) {
 			return FoodStatus.NONE;
 		}

@@ -31,8 +31,11 @@ public class FoodResponseDto extends FoodServletDto {
 
 	private void updateFoodStatus(Food entity) {
 		LocalDate today = LocalDate.now();
+
 		if (entity.getLastUpdateDate()
 				.isEqual(today)) {
+			this.foodStatus = entity.getFoodStatus();
+			this.lastUpdateDate = today;
 			return;
 		}
 		FoodStatus updatedFoodStatus = foodStatusByDate(today, this.expireAt);

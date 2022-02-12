@@ -63,7 +63,7 @@ body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt
 
 
 
-## 식료품 업데이트✅
+## 식료품 업데이트 ✅
 
 > GET : `/edit/{foodId}` => 식료품 수정 화면으로 이동
 >
