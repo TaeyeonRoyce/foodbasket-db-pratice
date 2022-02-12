@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,5 +78,11 @@ public class FoodController {
 		return foodId;
 	}
 
+	@DeleteMapping("/{foodId}")
+	public Long deleteFood(@PathVariable Long foodId) {
+		log.debug("delete food, foodId : {}", foodId);
+		foodService.deleteFood(foodId);
+		return foodId;
+	}
 
 }

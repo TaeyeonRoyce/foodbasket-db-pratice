@@ -48,7 +48,7 @@ public class FoodApiControllerTest {
 
 
 	@Test
-	public void 저장_Food() {
+	public void 저장하기() {
 		//given
 		String foodName = "바나나";
 		FoodRequestDto requestDto = getSaveRequestDto(foodName);
@@ -68,7 +68,7 @@ public class FoodApiControllerTest {
 	}
 
 	@Test
-	public void 수정_Food() {
+	public void 수정하기() {
 		//given
 		Food beef_chill_meat = DataUtils.beef_CHILL_MEAT();
 		Long id = foodRepository.save(beef_chill_meat).getId();
@@ -119,6 +119,23 @@ public class FoodApiControllerTest {
 		assertThat(foodResponseDto.getFoodStatus()).isEqualTo(FoodStatus.WARN);
 		assertThat(foodResponseDto.getLastUpdateDate()).isEqualTo(DataUtils.today);
 	}
+
+	@Test
+	public void 삭제하기() {
+		//given
+		Food beef_chill_meat = DataUtils.beef_CHILL_MEAT();
+		Long id = foodRepository.save(beef_chill_meat).getId();
+
+		String url = "http://localhost:" + port + "/foodbasket/" + id;
+
+		//when
+		restTemplate.delete(url);
+
+		//then
+		List<Food> allFoods = foodRepository.findAll();
+		assertThat(allFoods).isEmpty();
+	}
+
 
 
 

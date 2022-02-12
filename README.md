@@ -65,23 +65,27 @@ body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt
 
 ## 식료품 업데이트 ✅
 
-> GET : `/edit/{foodId}` => 식료품 수정 화면으로 이동
+GET : `/edit/{foodId}` => 식료품 수정 화면으로 이동
+
+POST : `/edit/{foodId}` => 식료품 수정 by Id 
+body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
+
+`FoodUpdateRequestDto`를 통해 데이터 받기. 필드와 메서드가 동일하여 `FoodSaveRequestDto`를 상속받음. ✅
+
+### 금일 날짜와 비교하여 제품 상태 업데이트 기능 구현 ✅
+
+>1. 조회시 업데이트 로직 수행
+>   `FoodResponseDto`로 reponse를 전달해 주는데,
 >
-> POST : `/edit/{foodId}` => 식료품 수정 by Id 
-> body => {"food" : "", "storeway" : "", "category" : "", "quantity" : "", "saveAt" : "", "expireAt" : ""}
+>   `Food`(entity) -> `FoodResponseDto`과정에서 제품 상태 업데이트가 진행 되도록 함.
 >
-> `FoodUpdateRequestDto`를 통해 데이터 받기. 필드와 메서드가 동일하여 `FoodSaveRequestDto`를 상속받음. ✅
->
-> 금일 날짜와 비교하여 제품 상태 업데이트 기능 구현 ✅
->
-> 1. 조회시 업데이트 로직 수행
->    `FoodResponseDto`로 reponse를 전달해 주는데,
->
->    `Food`(entity) -> `FoodResponseDto`과정에서 제품 상태 업데이트가 진행 되도록 함.
->
-> 2. 업데이트 날짜를 저장하여 날짜 변경시에만 업데이트 수행하도록 구현
+>2. 업데이트 날짜를 저장하여 날짜 변경시에만 업데이트 수행하도록 구현
+
+
 
 ## 식료품 삭제
+
+DELETE : `/{foodId}` => foodId로 삭제
 
 
 

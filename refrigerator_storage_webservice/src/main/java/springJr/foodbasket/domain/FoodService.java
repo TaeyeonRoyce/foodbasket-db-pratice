@@ -65,4 +65,9 @@ public class FoodService {
 			.collect(Collectors.toList());
 	}
 
+	public Long deleteFood(Long id) {
+		foodRepository.deleteById(id);
+		return id;
+	}
+
 }
