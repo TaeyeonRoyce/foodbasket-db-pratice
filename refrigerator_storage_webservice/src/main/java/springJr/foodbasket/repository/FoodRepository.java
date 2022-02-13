@@ -11,6 +11,7 @@ import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
+import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
 
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {
@@ -23,4 +24,5 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 
 	@Query("SELECT f FROM Food f WHERE f.foodStatus = :foodStatus")
 	List<Food> findByFoodStatus(@Param("foodStatus") FoodStatus foodStatus);
+
 }

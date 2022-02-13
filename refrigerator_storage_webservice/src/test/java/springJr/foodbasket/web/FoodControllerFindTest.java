@@ -2,6 +2,7 @@ package springJr.foodbasket.web;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -11,23 +12,37 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import springJr.foodbasket.domain.FoodService;
 import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
+import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
+import springJr.foodbasket.domain.food.dto.request.FoodFilterRequestDto;
+import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataUtils;
 
 @DisplayName("선택 조회 테스트")
-@Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class FoodControllerFindTest {
 
+	@LocalServerPort
+	private int port;
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+
 	@Autowired
 	private FoodRepository foodRepository;
+
+	@Autowired
+	private FoodService foodService;
 
 	@BeforeEach
 	void setData() {
@@ -91,5 +106,32 @@ class FoodControllerFindTest {
 		//then
 		assertThat(allFoods.size()).isEqualTo(1);
 	}
+
+	@Test
+	public void 필터_조회() {
+		//given
+		String url = "http://localhost:" + port + "/foodbasket?category=FRUIT";
+
+		//when
+		FoodResponseDto[] foodResponseDto = restTemplate.getForObject(url, FoodResponseDto[].class);
+		List<FoodResponseDto> list = Arrays.asList(foodResponseDto);
+
+		//then
+		assertThat(list.size()).isEqualTo(2);
+	}
+
+	@Test
+	public void 필터_조회_테스트() {
+	    //given
+		FoodFilterRequestDto requestDto = new FoodFilterRequestDto();
+		requestDto.setCategory(Category.FRUIT);
+
+		//when
+		List<FoodResponseDto> list = foodService.findByFilter(requestDto);
+
+		//then
+		assertThat(list.size()).isEqualTo(2);
+	}
+
 
 }

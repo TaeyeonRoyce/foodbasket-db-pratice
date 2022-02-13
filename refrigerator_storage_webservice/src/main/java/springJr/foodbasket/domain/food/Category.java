@@ -1,6 +1,6 @@
 package springJr.foodbasket.domain.food;
 
-public enum Category {
+public enum Category implements FoodFilterable {
 	MEAT,
 	FRUIT,
 	VEGETABLE,
