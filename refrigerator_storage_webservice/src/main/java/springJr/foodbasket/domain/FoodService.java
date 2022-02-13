@@ -1,6 +1,7 @@
 package springJr.foodbasket.domain;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -10,8 +11,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import springJr.foodbasket.domain.food.Category;
 import springJr.foodbasket.domain.food.Food;
+import springJr.foodbasket.domain.food.FoodFilterable;
 import springJr.foodbasket.domain.food.FoodStatus;
 import springJr.foodbasket.domain.food.StoreWay;
+import springJr.foodbasket.domain.food.dto.request.FoodFilterRequestDto;
 import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
 import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
 import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
@@ -36,16 +39,24 @@ public class FoodService {
 			.build();
 	}
 
-	public List<Food> findByCategory(Category category) {
-		return foodRepository.findByCategory(category);
+	public List<FoodResponseDto> findByFilter(FoodFilterRequestDto requestDto) {
+		FoodFilterable filterWay = requestDto.getFilterWay();
+		if (filterWay == null) {
+			return findAll();
+		}
+		return toResponseDto(filterMapping(filterWay));
 	}
 
-	public List<Food> findByStoreWay(StoreWay storeWay) {
-		return foodRepository.findByStoreWay(storeWay);
-	}
+	private List<Food> filterMapping(FoodFilterable filter) {
 
-	public List<Food> findByFoodStatus(FoodStatus foodStatus) {
-		return foodRepository.findByFoodStatus(foodStatus);
+		if (filter instanceof Category) {
+			return foodRepository.findByCategory((Category) filter);
+		} else if (filter instanceof StoreWay) {
+			return foodRepository.findByStoreWay((StoreWay) filter);
+		} else if (filter instanceof FoodStatus) {
+			return foodRepository.findByFoodStatus((FoodStatus) filter);
+		}
+		return null;
 	}
 
 	public Long addFood(FoodSaveRequestDto requestDto) {

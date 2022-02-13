@@ -3,7 +3,7 @@ package springJr.foodbasket.domain.food;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public enum FoodStatus {
+public enum FoodStatus implements FoodFilterable {
 	NONE,
 	FRESH,
 	CAUTION,
