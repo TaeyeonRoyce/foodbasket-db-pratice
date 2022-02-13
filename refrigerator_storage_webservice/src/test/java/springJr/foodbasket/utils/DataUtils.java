@@ -2,10 +2,10 @@ package springJr.foodbasket.utils;
 
 import java.time.LocalDate;
 
-import springJr.foodbasket.domain.food.Category;
+import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.domain.food.field.StoreWay;
+import springJr.foodbasket.web.dto.request.FoodSaveRequestDto;
 
 public class DataUtils {
 

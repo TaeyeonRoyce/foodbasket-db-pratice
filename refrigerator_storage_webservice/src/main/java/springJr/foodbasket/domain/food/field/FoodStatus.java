@@ -1,4 +1,4 @@
-package springJr.foodbasket.domain.food;
+package springJr.foodbasket.domain.food.field;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

@@ -17,13 +17,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import springJr.foodbasket.domain.food.Category;
+import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.FoodStatus;
-import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.request.FoodRequestDto;
-import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
-import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
+import springJr.foodbasket.domain.food.field.FoodStatus;
+import springJr.foodbasket.domain.food.field.StoreWay;
+import springJr.foodbasket.web.dto.request.FoodRequestDto;
+import springJr.foodbasket.web.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.web.dto.response.FoodResponseDto;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataUtils;
 

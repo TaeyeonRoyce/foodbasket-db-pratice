@@ -1,6 +1,6 @@
-package springJr.foodbasket.domain.food.dto.response;
+package springJr.foodbasket.web.dto.response;
 
-import static springJr.foodbasket.domain.food.FoodStatus.*;
+import static springJr.foodbasket.domain.food.field.FoodStatus.*;
 
 import java.time.LocalDate;
 
@@ -8,8 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.FoodStatus;
-import springJr.foodbasket.domain.food.dto.FoodServletDto;
+import springJr.foodbasket.domain.food.field.FoodStatus;
+import springJr.foodbasket.web.dto.FoodServletDto;
 
 @Getter
 @NoArgsConstructor

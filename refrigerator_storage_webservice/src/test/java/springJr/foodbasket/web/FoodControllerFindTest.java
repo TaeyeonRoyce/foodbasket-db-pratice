@@ -15,15 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import springJr.foodbasket.domain.FoodService;
-import springJr.foodbasket.domain.food.Category;
+import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.FoodStatus;
-import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.request.FoodFilterRequestDto;
-import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
+import springJr.foodbasket.domain.food.field.StoreWay;
+import springJr.foodbasket.web.dto.request.FoodFilterRequestDto;
+import springJr.foodbasket.web.dto.response.FoodResponseDto;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataUtils;
 
@@ -127,7 +125,7 @@ class FoodControllerFindTest {
 		requestDto.setCategory(Category.FRUIT);
 
 		//when
-		List<FoodResponseDto> list = foodService.findByFilter(requestDto);
+		List<FoodResponseDto> list = foodService.findFoods(requestDto);
 
 		//then
 		assertThat(list.size()).isEqualTo(2);

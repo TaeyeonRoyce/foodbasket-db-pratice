@@ -7,11 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import springJr.foodbasket.domain.food.Category;
+import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.FoodStatus;
-import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
+import springJr.foodbasket.domain.food.field.FoodStatus;
+import springJr.foodbasket.domain.food.field.StoreWay;
 
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {

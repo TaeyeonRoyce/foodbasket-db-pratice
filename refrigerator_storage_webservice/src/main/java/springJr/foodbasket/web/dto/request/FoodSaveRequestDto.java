@@ -1,15 +1,15 @@
-package springJr.foodbasket.domain.food.dto.request;
+package springJr.foodbasket.web.dto.request;
 
-import static springJr.foodbasket.domain.food.FoodStatus.*;
+import static springJr.foodbasket.domain.food.field.FoodStatus.*;
 
 import java.time.LocalDate;
 
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import springJr.foodbasket.domain.food.Category;
+import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
-import springJr.foodbasket.domain.food.StoreWay;
-import springJr.foodbasket.domain.food.dto.FoodServletDto;
+import springJr.foodbasket.domain.food.field.StoreWay;
+import springJr.foodbasket.web.dto.FoodServletDto;
 
 @NoArgsConstructor
 public class FoodSaveRequestDto extends FoodServletDto implements FoodRequestDto {

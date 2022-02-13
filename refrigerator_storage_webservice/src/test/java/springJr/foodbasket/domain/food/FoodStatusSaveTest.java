@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import springJr.foodbasket.domain.food.field.FoodStatus;
 import springJr.foodbasket.repository.FoodRepository;
 import springJr.foodbasket.utils.DataUtils;
 
