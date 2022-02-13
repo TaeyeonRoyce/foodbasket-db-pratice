@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import springJr.foodbasket.domain.FoodService;
-import springJr.foodbasket.domain.food.FoodFilterable;
-import springJr.foodbasket.domain.food.dto.request.FoodFilterRequestDto;
-import springJr.foodbasket.domain.food.dto.request.FoodSaveRequestDto;
-import springJr.foodbasket.domain.food.dto.request.FoodUpdateRequestDto;
-import springJr.foodbasket.domain.food.dto.response.FoodResponseDto;
+import springJr.foodbasket.web.dto.request.FoodFilterRequestDto;
+import springJr.foodbasket.web.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.web.dto.request.FoodUpdateRequestDto;
+import springJr.foodbasket.web.dto.response.FoodResponseDto;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,23 +31,23 @@ public class FoodController {
 	private final FoodService foodService;
 
 	@GetMapping("")
-	public List<FoodResponseDto> findFood(
+	public List<FoodResponseDto> loadFoods(
 		@ModelAttribute FoodFilterRequestDto requestDto
 	) {
 		log.debug("find Food");
-		return foodService.findByFilter(requestDto);
+		return foodService.findFoods(requestDto);
 	}
 
 	@PostMapping("/newfood")
 	public Long addFood(@RequestBody FoodSaveRequestDto requestDto, HttpServletResponse response) throws IOException {
 		log.debug("save food : {}", requestDto);
-		Long saveFoodId = foodService.addFood(requestDto);
+		Long saveFoodId = foodService.saveFood(requestDto);
 		// response.sendRedirect("http://localhost:3000/foodbasket");
 		return saveFoodId;
 	}
 
 	@GetMapping("/{foodId}")
-	public FoodResponseDto findFood(@PathVariable Long foodId) {
+	public FoodResponseDto loadOneFoodDetail(@PathVariable Long foodId) {
 		log.debug("find food, foodId : {}", foodId);
 		return foodService.findById(foodId);
 	}
@@ -63,7 +62,7 @@ public class FoodController {
 	@DeleteMapping("/{foodId}")
 	public Long deleteFood(@PathVariable Long foodId) {
 		log.debug("delete food, foodId : {}", foodId);
-		foodService.deleteFood(foodId);
+		foodService.deleteFoodById(foodId);
 		return foodId;
 	}
 

@@ -1,15 +1,11 @@
-package springJr.foodbasket.domain.food.dto.request;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+package springJr.foodbasket.web.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
-import springJr.foodbasket.domain.food.Category;
-import springJr.foodbasket.domain.food.FoodFilterable;
-import springJr.foodbasket.domain.food.FoodStatus;
-import springJr.foodbasket.domain.food.StoreWay;
+import springJr.foodbasket.domain.food.field.Category;
+import springJr.foodbasket.domain.food.field.FoodFilterable;
+import springJr.foodbasket.domain.food.field.FoodStatus;
+import springJr.foodbasket.domain.food.field.StoreWay;
 
 @Getter
 @Setter
