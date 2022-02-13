@@ -2,16 +2,21 @@ package springJr.foodbasket.utils;
 
 import java.time.LocalDate;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import springJr.foodbasket.domain.food.field.Category;
 import springJr.foodbasket.domain.food.Food;
 import springJr.foodbasket.domain.food.field.StoreWay;
 import springJr.foodbasket.web.dto.request.FoodSaveRequestDto;
+import springJr.foodbasket.web.dto.request.FoodUpdateRequestDto;
 
+@Component
 public class DataUtils {
 
-	public static final LocalDate today = LocalDate.now();
+	public final LocalDate today = LocalDate.now();
 
-	public static Food banana_CHILL_FRUIT() {
+	public Food banana_CHILL_FRUIT() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("바나나")
 			.storeWay(StoreWay.CHILL)
@@ -23,7 +28,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food beef_CHILL_MEAT() {
+	public Food beef_CHILL_MEAT() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("소고기")
 			.storeWay(StoreWay.CHILL)
@@ -35,7 +40,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food blueberry_FREEZE_FRUIT() {
+	public Food blueberry_FREEZE_FRUIT() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("블루베리")
 			.storeWay(StoreWay.FREEZE)
@@ -47,7 +52,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food milk_CHILL_DAILY() {
+	public Food milk_CHILL_DAILY() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("우유")
 			.storeWay(StoreWay.CHILL)
@@ -60,7 +65,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food yogurt_CHILL_DAILY() {
+	public Food yogurt_CHILL_DAILY() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("요거트")
 			.storeWay(StoreWay.CHILL)
@@ -73,7 +78,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food carrot_CHILL_Vegetable() {
+	public Food carrot_CHILL_Vegetable() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("당근")
 			.storeWay(StoreWay.CHILL)
@@ -86,7 +91,7 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
-	public static Food chickenWing_2DaysBefore() {
+	public Food chickenWing_2DaysBefore() {
 		FoodSaveRequestDto requestDto = FoodSaveRequestDto.builder()
 			.name("닭날개")
 			.storeWay(StoreWay.CHILL)
@@ -99,4 +104,30 @@ public class DataUtils {
 		return requestDto.toEntity();
 	}
 
+
+	public FoodSaveRequestDto toSaveRequestDtoByName(String foodName) {
+		LocalDate today = this.today;
+
+		return FoodSaveRequestDto.builder()
+			.name(foodName)
+			.storeWay(StoreWay.CHILL)
+			.category(Category.FRUIT)
+			.quantity(3)
+			.saveAt(today)
+			.expireAt(today.plusDays(3))
+			.build();
+	}
+
+	public FoodUpdateRequestDto toUpdateRequestDtoByNameCategory(String updateName, Category updateCategory) {
+		LocalDate today = this.today;
+
+		return FoodUpdateRequestDto.builder()
+			.name(updateName)
+			.storeWay(StoreWay.CHILL)
+			.category(updateCategory)
+			.quantity(3)
+			.saveAt(today)
+			.expireAt(today.plusDays(3))
+			.build();
+	}
 }

@@ -22,6 +22,9 @@ import springJr.foodbasket.utils.DataUtils;
 class FoodStatusSaveTest {
 
 	@Autowired
+	DataUtils dataUtils;
+
+	@Autowired
 	FoodRepository foodRepository;
 
 	@AfterEach
@@ -33,7 +36,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_주의() {
 		//given
-		Food milk = DataUtils.milk_CHILL_DAILY();
+		Food milk = dataUtils.milk_CHILL_DAILY();
 		foodRepository.save(milk);
 
 		//when
@@ -47,7 +50,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_만료() {
 		//given
-		Food yogurt = DataUtils.yogurt_CHILL_DAILY();
+		Food yogurt = dataUtils.yogurt_CHILL_DAILY();
 		foodRepository.save(yogurt);
 
 		//when
@@ -61,7 +64,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_신선() {
 		//given
-		Food carrot = DataUtils.carrot_CHILL_Vegetable();
+		Food carrot = dataUtils.carrot_CHILL_Vegetable();
 		foodRepository.save(carrot);
 
 		//when
@@ -75,7 +78,7 @@ class FoodStatusSaveTest {
 	@Test
 	public void 식료품_상태_모름() {
 		//given
-		Food banana = DataUtils.banana_CHILL_FRUIT();
+		Food banana = dataUtils.banana_CHILL_FRUIT();
 		foodRepository.save(banana);
 
 		//when

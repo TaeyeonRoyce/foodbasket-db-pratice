@@ -32,7 +32,7 @@ public class FoodService {
 	}
 
 	public FoodResponseDto findById(Long id) {
-		Food food = foodRepository.findById(id).get();
+		Food food = foodRepository.findById(id).orElseThrow(NullPointerException::new);
 		return FoodResponseDto.builder()
 			.entity(food)
 			.build();
